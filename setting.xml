@@ -1,5 +1,82 @@
-<setting>
-    <x1>1</x1><!--範圍1-->
-    <x2>10</x2><!--範圍10-->
-    <n>n+1</n><!--試的次數-->
-</setting>
+<game>
+    <setup>
+        <random_number>
+            <lower_limit>1</lower_limit>
+            <upper_limit>10</upper_limit>
+        </random_number>
+        <attempts>0</attempts>
+    </setup>
+    
+    <user_input>
+        <prompt>猜一個數字 1 to 10 :</prompt>
+        <guess>0</guess>
+    </user_input>
+    
+    <game_loop>
+        <while>
+            <condition>
+                <not_equal>
+                    <variable>a</variable>
+                    <variable>b</variable>
+                </not_equal>
+            </condition>
+            <if>
+                <condition>
+                    <less_than>
+                        <variable>a</variable>
+                        <variable>b</variable>
+                    </less_than>
+                </condition>
+                <then>
+                    <print>太高，再一次</print>
+                    <user_input>
+                        <prompt>猜一個數字 1 to 10 :</prompt>
+                        <store_in_variable>b</store_in_variable>
+                    </user_input>
+                    <increment>
+                        <variable>attempts</variable>
+                    </increment>
+                </then>
+            </if>
+            <if>
+                <condition>
+                    <greater_than>
+                        <variable>a</variable>
+                        <variable>b</variable>
+                    </greater_than>
+                </condition>
+                <then>
+                    <print>太低，再一次</print>
+                    <user_input>
+                        <prompt>猜一個數字 1 to 10 :</prompt>
+                        <store_in_variable>b</store_in_variable>
+                    </user_input>
+                    <increment>
+                        <variable>attempts</variable>
+                    </increment>
+                </then>
+            </if>
+        </while>
+    </game_loop>
+    
+    <result>
+        <if>
+            <condition>
+                <equal>
+                    <variable>a</variable>
+                    <variable>b</variable>
+                </equal>
+            </condition>
+            <then>
+                <print>恭喜答對</print>
+                <print>試了</print>
+                <print>${int(n+1)}</print>
+                <print>次</print>
+                <user_input>
+                    <prompt></prompt>
+                    <store_in_variable>c</store_in_variable>
+                </user_input>
+            </then>
+        </if>
+    </result>
+</game>
